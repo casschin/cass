@@ -1,9 +1,10 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import { Logo } from "./components/Logo";
+import styled from "styled-components";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <Container>
       <Head>
         <title>Cass</title>
         <link rel="icon" href="/favicon.ico" />
@@ -15,27 +16,64 @@ export default function Home() {
           referrerPolicy="no-referrer"
         />
       </Head>
-
-      <main className={styles.main}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          aria-labelledby="cass-logo"
-          viewBox="0 0 400 400"
-          className={styles.logo}
-        >
-          <title id="cass-logo">Cass logo</title>
-          <circle cx="200" cy="200" r="200" />
-          <circle cx="200" cy="200" r="170" fill="#fff" />
-          <circle cx="200" cy="200" r="130" />
-          <circle cx="200" cy="200" r="100" fill="#fff" />
-          <circle cx="200" cy="200" r="64" />
-          <rect x="255" y="180" fill="black" width="140" height="40" />
-        </svg>
-        <h1 className={styles.title}>
-          <span className={styles.titleMain}>Cass</span>
-          <span className={styles.titleSub}>Corp.</span>
-        </h1>
-      </main>
-    </div>
+      <Nav>
+        <Logo width={40} />
+      </Nav>
+      <Main>
+        <H1>
+          <WelcomeText>Welcome to</WelcomeText>
+          <CassText>Cass</CassText>
+          <CorpText>Corp.</CorpText>
+        </H1>
+      </Main>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 88px 1fr 88px;
+`;
+
+const Nav = styled.nav`
+  width: 100%;
+  padding: 24px;
+`;
+
+const Main = styled.main`
+  padding: 24px;
+  align-self: center;
+`;
+
+const H1 = styled.h1`
+  margin: 0;
+`;
+
+const HeadingText = styled.span`
+  display: inline-block;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 5rem;
+  line-height: 1em;
+  @media (max-width: 600px) {
+    font-size: 3rem;
+  }
+`;
+
+const WelcomeText = styled(HeadingText)`
+  display: block;
+  font-size: 2rem;
+  text-transform: none;
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+  }
+`;
+
+const CassText = styled(HeadingText)`
+  font-weight: 800;
+`;
+
+const CorpText = styled(HeadingText)`
+  font-weight: 300;
+`;
